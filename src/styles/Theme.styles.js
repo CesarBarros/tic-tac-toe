@@ -12,7 +12,7 @@ export const Theme = {
       primary: "#005CA9",
       secondary: "#fdcb6e",
       gold: {
-        light: "rgba(255, 215, 92, 0.75)",
+        light: "#ffd75c",
         dark: "#bf9224",
       },
       light: "rgb(233, 233, 233)",
@@ -29,6 +29,8 @@ export const Theme = {
       lightGray: "#666",
       black: "#000",
       white: "#fff",
+      playerX: "#ff6b6b",
+      playerO: "#4ecdc4",
     },
     notification: {
       error: "#d32f2f",

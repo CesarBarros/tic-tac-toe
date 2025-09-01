@@ -32,6 +32,8 @@
  * @property {string} lightGray
  * @property {string} black
  * @property {string} white
+ * @property {string} playerX
+ * @property {string} playerO
  */
 
 /**
