@@ -2,22 +2,63 @@ import { useCallback, useState } from "react";
 
 export const useGameState = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
+  const [currentPlayer, setCurrentPlayer] = useState("X");
+  const [winner, setWinner] = useState(null);
+
+  const checkWinner = useCallback((boardState) => {
+    const winningLines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    for (let line of winningLines) {
+      const [a, b, c] = line;
+      if (
+        boardState[a] &&
+        boardState[a] === boardState[b] &&
+        boardState[a] === boardState[c]
+      ) {
+        return boardState[a];
+      }
+    }
+    return null;
+  }, []);
+
+  const checkDraw = useCallback((boardState) => {
+    return boardState.every((cell) => cell !== null);
+  }, []);
 
   const makeMove = useCallback(
     (index) => {
       if (board[index]) return false;
 
       const newBoard = [...board];
-      newBoard[index] = Math.random() > 0.5 ? "X" : "O";
+      newBoard[index] = currentPlayer;
       setBoard(newBoard);
+
+      const gameWinner = checkWinner(newBoard);
+      if (gameWinner) {
+        setWinner(gameWinner);
+      } else if (checkDraw(newBoard)) {
+        setWinner("draw");
+      } else {
+        setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
+      }
 
       return true;
     },
-    [board]
+    [board, currentPlayer, checkWinner, checkDraw]
   );
 
   return {
     board,
-    makeMove
+    currentPlayer,
+    winner,
+    makeMove,
   };
 };

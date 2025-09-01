@@ -1,14 +1,16 @@
 import { GameBoard } from "~/components/GameBoard";
+import { GameStatusMessage } from "~/components/GameStatusMessage";
 import { useGameState } from "~/hooks/useGameState";
 import * as S from "./gamer.styles";
 
 export const Gamer = () => {
-  const gameState = useGameState();
+  const { board, currentPlayer, makeMove, winner } = useGameState();
 
   return (
     <S.GamerContainer>
       Gamer Page
-      <GameBoard board={gameState.board} onCellClick={gameState.makeMove} />
+      <GameStatusMessage {...{ winner, currentPlayer }} />
+      <GameBoard board={board} onCellClick={makeMove} />
     </S.GamerContainer>
   );
 };
