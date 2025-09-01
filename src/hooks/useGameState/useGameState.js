@@ -58,11 +58,19 @@ export const useGameState = () => {
     [board, currentPlayer, checkWinner, checkDraw, gameOver]
   );
 
+  const resetGame = useCallback(() => {
+    setBoard(Array(9).fill(null));
+    setCurrentPlayer("X");
+    setWinner(null);
+    setGameOver(false);
+  }, []);
+
   return {
     board,
     currentPlayer,
     gameOver,
-    winner,
     makeMove,
+    resetGame,
+    winner,
   };
 };

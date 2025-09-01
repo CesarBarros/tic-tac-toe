@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Button } from "~/components/Button";
 
 export const ScoreBoardContainer = styled("div")`
   ${(/** @type ScoreBoardContainerParams */ { theme }) => css`
@@ -17,26 +18,25 @@ export const ScoreBoardTitle = styled("h3")`
   `}
 `;
 
-export const MatchWinnerMessage = styled("div")`
-  ${(/** @type MatchWinnerMessageParams */ { theme }) => css`
-    color: ${theme.color.notification.success};
-    font-size: 18px;
-    font-weight: bold;
-    margin: ${theme.spacing * 3}px auto;
+export const ResetScoresBtn = styled(Button)`
+  ${(/** @type ButtonParams */ { theme }) => css`
+    background-color: ${theme.color.background.primary};
+    color: ${theme.color.text.white};
+    flex: 1;
   `}
 `;
 
-export const ResetScoresBtn = styled("button")`
-  ${(/** @type ScoreBoardContainerParams */ { theme }) => css`
-    background-color: ${theme.color.background.primary};
-    color: ${theme.color.text.white};
-    border: none;
-    padding: ${theme.spacing * 2}px ${theme.spacing * 4}px;
-    border-radius: ${theme.spacing}px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: ${theme.spacing * 2}px;
-    text-align: center;
+export const ResetGameBtn = styled(Button)`
+  ${(/** @type ButtonParams */ { theme }) => css`
+    background-color: ${theme.color.background.secondary};
+    color: ${theme.color.text.black};
+    flex: 1;
+  `}
+`;
+
+export const ButtonsContainer = styled("div")`
+  ${(/** @type ButtonParams */ { theme }) => css`
+    display: flex;
+    gap: ${theme.spacing}px;
   `}
 `;

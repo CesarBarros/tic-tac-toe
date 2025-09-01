@@ -7,17 +7,12 @@
 /**
  * @typedef {Object} ScoreBoardParams
  * @property {Scores} scores
- * @property {"O" | "X" | null} matchWinner
+//  * @property {"O" | "X" | null} matchWinner
  * @property {() => void} onResetScores
+ * @property {() => void} onResetGame
  */
 
 /**
  * @typedef {Object} ScoreBoardContainerParams
- * @property {Theme} theme
- * @property {"O" | "X" | "draw" | null} winner
- */
-
-/**
- * @typedef {Object} MatchWinnerMessageParams
  * @property {Theme} theme
  */

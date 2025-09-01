@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 
 import * as S from "./main.styles";
 import { CustomThemeProvider } from "~/styles";
-import { Gamer } from "~/pages/gamer";
+import { Game } from "~/pages/game";
 
 const container = document.getElementById("root");
 
@@ -17,7 +17,7 @@ root.render(
   <StrictMode>
     <CustomThemeProvider>
       <S.AppContainer>
-        <Gamer />
+        <Game />
       </S.AppContainer>
     </CustomThemeProvider>
   </StrictMode>
