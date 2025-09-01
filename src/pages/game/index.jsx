@@ -14,8 +14,6 @@ export const Game = () => {
     if (winner) return updateScore(winner);
   }, [winner, updateScore]);
 
-  console.log({ matchWinner });
-
   return (
     <S.GamerContainer>
       Gamer Page
