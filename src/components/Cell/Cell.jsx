@@ -5,7 +5,7 @@ export const Cell = (/** @type CellParams */ { player, onClick, index }) => {
     <S.CellContainer
       onClick={() => onClick(index)}
       disabled={!!player}
-      player={player}
+      {...{ player }}
     >
       {player}
     </S.CellContainer>

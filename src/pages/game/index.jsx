@@ -5,10 +5,21 @@ import { ScoreBoard } from "~/components/ScoreBoard";
 import { useGameState } from "~/hooks/useGameState";
 import { useScore } from "~/hooks/useScore";
 import * as S from "./game.styles";
+import { Timer } from "~/components/Timer";
+import { useTimer } from "~/hooks/useTimer";
 
 export const Game = () => {
-  const { board, currentPlayer, makeMove, resetGame, winner } = useGameState();
+  const {
+    board,
+    currentPlayer,
+    gameOver,
+    makeMove,
+    makeRandomMove,
+    resetGame,
+    winner,
+  } = useGameState();
   const { scores, matchWinner, resetScores, updateScore } = useScore();
+  const { timeLeft } = useTimer(makeRandomMove, gameOver, currentPlayer);
 
   useEffect(() => {
     if (winner) return updateScore(winner);
@@ -16,18 +27,17 @@ export const Game = () => {
 
   return (
     <S.GamerContainer>
-      Gamer Page
-      {matchWinner && (
-        <S.MatchWinnerMessage>
-          Jogador {matchWinner} venceu as 11 partidas!
-        </S.MatchWinnerMessage>
+      {gameOver && (
+        <GameStatusMessage {...{ winner, currentPlayer, matchWinner }} />
+      )}
+      {!gameOver && !matchWinner && (
+        <Timer timeLeft={timeLeft} currentPlayer={currentPlayer} />
       )}
       <ScoreBoard
         {...{ scores, matchWinner }}
         onResetScores={resetScores}
         onResetGame={resetGame}
       />
-      <GameStatusMessage {...{ winner, currentPlayer }} />
       <GameBoard board={board} onCellClick={makeMove} />
     </S.GamerContainer>
   );
