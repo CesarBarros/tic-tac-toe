@@ -2,6 +2,7 @@
  * @typedef {Object} GameStatusMessageParams
  * @property {"O" | "X" | "draw" | null} winner
  * @property {string} currentPlayer
+ * @property {'X' | 'O' | null} matchWinner
  */
 
 /**

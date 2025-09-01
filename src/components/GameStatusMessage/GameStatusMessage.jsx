@@ -1,7 +1,7 @@
 import * as S from "./GameStatusMessage.styles";
 
 export const GameStatusMessage = (
-  /** @type GameStatusMessageParams */ { winner, currentPlayer }
+  /** @type GameStatusMessageParams */ { winner, currentPlayer, matchWinner }
 ) => {
   const getMessage = () => {
     if (winner === "draw") return "Empate!";
@@ -9,7 +9,17 @@ export const GameStatusMessage = (
     return `Está na vez do Jogador ${currentPlayer}`;
   };
 
+  if (matchWinner) {
+    return (
+      <S.MatchWinnerMessage>
+        Jogador {matchWinner} venceu as 11 partidas!
+      </S.MatchWinnerMessage>
+    );
+  }
+
   return (
-    <S.GameStatusMessageContainer winner={winner}>{getMessage()}</S.GameStatusMessageContainer>
+    <S.GameStatusMessageContainer {...{ winner }}>
+      {getMessage()}
+    </S.GameStatusMessageContainer>
   );
 };
