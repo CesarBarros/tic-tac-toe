@@ -10,7 +10,7 @@ export const Theme = {
   color: {
     background: {
       primary: "#005CA9",
-      secondary: "#D87B00",
+      secondary: "#fdcb6e",
       gold: {
         light: "rgba(255, 215, 92, 0.75)",
         dark: "#bf9224",
