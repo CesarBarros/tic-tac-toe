@@ -14,6 +14,7 @@ import { useCallback, useState } from "react";
  *   currentPlayer: Player,
  *   gameOver: boolean,
  *   makeMove: (index: number) => boolean,
+ *   makeRandomMove: () => void,
  *   resetGame: () => void,
  *   winner: GameResult,
  * }} The current game state and actions.
@@ -95,6 +96,18 @@ export const useGameState = () => {
     [board, currentPlayer, checkWinner, checkDraw, gameOver]
   );
 
+  const makeRandomMove = useCallback(() => {
+    const availableMoves = board
+      .map((cell, index) => (cell === null ? index : null))
+      .filter((val) => val !== null);
+
+    if (availableMoves.length > 0) {
+      const randomIndex =
+        availableMoves[Math.floor(Math.random() * availableMoves.length)];
+      makeMove(randomIndex);
+    }
+  }, [board, makeMove]);
+
   /**
    * Resets the game to its initial state.
    */
@@ -110,6 +123,7 @@ export const useGameState = () => {
     currentPlayer,
     gameOver,
     makeMove,
+    makeRandomMove,
     resetGame,
     winner,
   };
