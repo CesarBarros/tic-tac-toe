@@ -1,10 +1,24 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 
-createRoot(document.getElementById('root')).render(
+import * as S from "./main.styles";
+import { CustomThemeProvider } from "~/styles";
+import { Gamer } from "~/pages/gamer";
+
+const container = document.getElementById("root");
+
+if (!container) {
+  throw new Error("Root container not found");
+}
+
+const root = createRoot(container);
+
+root.render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    <CustomThemeProvider>
+      <S.AppContainer>
+        <Gamer />
+      </S.AppContainer>
+    </CustomThemeProvider>
+  </StrictMode>
+);
