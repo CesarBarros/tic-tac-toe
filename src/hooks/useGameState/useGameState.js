@@ -4,6 +4,7 @@ export const useGameState = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [currentPlayer, setCurrentPlayer] = useState("X");
   const [winner, setWinner] = useState(null);
+  const [gameOver, setGameOver] = useState(false);
 
   const checkWinner = useCallback((boardState) => {
     const winningLines = [
@@ -35,7 +36,7 @@ export const useGameState = () => {
 
   const makeMove = useCallback(
     (index) => {
-      if (board[index]) return false;
+      if (board[index] || gameOver) return false;
 
       const newBoard = [...board];
       newBoard[index] = currentPlayer;
@@ -44,20 +45,23 @@ export const useGameState = () => {
       const gameWinner = checkWinner(newBoard);
       if (gameWinner) {
         setWinner(gameWinner);
+        setGameOver(true);
       } else if (checkDraw(newBoard)) {
         setWinner("draw");
+        setGameOver(true);
       } else {
         setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
       }
 
       return true;
     },
-    [board, currentPlayer, checkWinner, checkDraw]
+    [board, currentPlayer, checkWinner, checkDraw, gameOver]
   );
 
   return {
     board,
     currentPlayer,
+    gameOver,
     winner,
     makeMove,
   };
