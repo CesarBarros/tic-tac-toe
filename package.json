@@ -1,7 +1,13 @@
 {
   "name": "tic-tac-toe",
+  "description": "Jogo da Velha (Tic Tac Toe) em React puro com JavaScript para desafio técnico para vaga de desenvolvedor Web Sênior (React)",
+  "author": {
+    "name": "Cesar Barros de Souza Filho",
+    "email": "cesarbsfilho@yahoo.com.br",
+    "url": "https://www.linkedin.com/in/cesarceara/"
+  },
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
